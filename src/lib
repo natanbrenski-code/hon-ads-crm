@@ -1,0 +1,85 @@
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+export type Agent = {
+  id: string
+  imie_nazwisko: string
+  email: string
+  aktywny: boolean
+}
+
+export type Klient = {
+  id: string
+  nazwa: string
+  nip?: string
+  adres?: string
+  kontakt?: string
+  telefon?: string
+  email?: string
+  email_faktury?: string
+  notatki?: string
+}
+
+export type Miesiac = {
+  id: string
+  nazwa: string
+  rok: number
+  miesiac: number
+  aktywny: boolean
+}
+
+export type Projekt = {
+  id: string
+  domena: string
+  klient_id?: string
+  agent_id?: string
+  miesiac_id: string
+  stan: string
+  faktura: string
+  segment: string
+  forma: string
+  forma_rozl: string
+  dzien_faktury: number
+  okres: string
+  zrodlo?: string
+  raport?: string
+  pm: number
+  seo: number
+  content: number
+  google_d: number
+  meta_d: number
+  tiktok_d: number
+  pinterest_d: number
+  linkedin_d: number
+  promo_d: number
+  google_w: number
+  meta_w: number
+  tiktok_w: number
+  pinterest_w: number
+  linkedin_w: number
+  promo_w: number
+  dane_potwierdzone: boolean
+  // z widoku
+  klient_nazwa?: string
+  agent_nazwa?: string
+  miesiac_nazwa?: string
+  wynagrodzenie?: number
+  budzet_wydany?: number
+  budzet_dekl?: number
+}
+
+export type Notatka = {
+  id: string
+  projekt_id: string
+  agent_id?: string
+  kategoria: string
+  data_kontaktu: string
+  tresc: string
+  created_at: string
+  // joined
+  agent_nazwa?: string
+}
